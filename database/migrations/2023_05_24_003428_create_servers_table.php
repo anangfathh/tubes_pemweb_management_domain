@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('ip_address');
-            $table->integer('port');
             $table->string('processor');
             $table->integer('jumlah_core');
             $table->integer('ram');

@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('domains', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('server_id')->constrained('servers');
+            $table->foreignId('unit_id')->constrained('units');
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('url');
+            $table->text('desc');
+            $table->string('jenis_aplikasi');
+            $table->string('ip_address');
+            $table->string('port');
             $table->timestamps();
         });
     }
