@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Domain\DomainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,13 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/domains', [DomainController::class, 'index'])->name('administrator.domain.index');
+    Route::get('/domains/create', [DomainController::class, 'create'])->name('administrator.domain.create');
+    Route::post('/domains', [DomainController::class, 'store'])->name('administrator.domain.store');
+    Route::get('/domains/{domain}/edit', [DomainController::class, 'edit'])->name('administrator.domain.edit');
+    Route::put('/domains/{domain}', [DomainController::class, 'update'])->name('administrator.domain.update');
+    Route::delete('/domains/{domain}', [DomainController::class, 'destroy'])->name('administrator.domain.destroy');
+    Route::delete('/domains/images/{domainImage}', [DomainController::class, 'destroyImage'])->name('administrator.domain.destroyImage');
+});

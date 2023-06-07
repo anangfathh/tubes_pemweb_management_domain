@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('domains', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('server_id')->constrained('servers');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('unit_id')->constrained('units');
+            $table->string('url');
+            $table->text('desc');
+            $table->string('jenis_aplikasi');
+            $table->string('port');
+            $table->enum('http_status', ['aktif', 'inactive']);
             $table->timestamps();
         });
     }
