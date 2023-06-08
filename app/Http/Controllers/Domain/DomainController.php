@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Domain;
 use App\Models\Server;
 use App\Models\DomainImage;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -82,7 +83,13 @@ class DomainController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $domain = Domain::findOrFail($id);
+        $domainImages = DomainImage::where('domain_id', $id)->get();
+
+        return view('pages.administrator.domain.show', [
+            'domain' => $domain,
+            'domainImages' => $domainImages
+        ]);
     }
 
     /**
@@ -182,5 +189,45 @@ class DomainController extends Controller
         return redirect()
             ->route('administrator.domain.edit', $prpductId)
             ->withError('Tidak berhak kawan jangan begitu');
+    }
+
+    /**
+     * Upload a new domain image.
+     */
+    public function uploadImage(Request $request, string $id)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $domain = Domain::findOrFail($id);
+
+        if (!$domain->where('unit_id', Auth::user()->unit_id)) {
+            return redirect()
+                ->route('administrator.domain.show', $id)
+                ->withErrors([
+                    'message' => 'Anda tidak berhak mengupload gambar untuk domain ini'
+                ]);
+        }
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = $image->store('domain/image', 'public');
+
+            DomainImage::create([
+                'domain_id' => $id,
+                'url' => $imageName
+            ]);
+
+            return redirect()
+                ->route('administrator.domain.show', $id)
+                ->with('message', 'Gambar berhasil diupload');
+        }
+
+        return redirect()
+            ->route('administrator.domain.show', $id)
+            ->withErrors([
+                'message' => 'Terjadi kesalahan saat mengupload gambar'
+            ]);
     }
 }

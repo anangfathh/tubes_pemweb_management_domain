@@ -12,6 +12,7 @@
                     <th>URL</th>
                     <th>Description</th>
                     <th>Jenis Aplikasi</th>
+                    <th>Details</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -22,6 +23,7 @@
                     <td>{{ $domain->url }}</td>
                     <td>{{ $domain->desc }}</td>
                     <td>{{ $domain->jenis_aplikasi }}</td>
+                    <td><a href="{{ route('administrator.domain.show', $domain) }}" class="btn btn-sm btn-success">Show</a></td>
                     <td>
                         <a href="{{ route('administrator.domain.edit', $domain) }}" class="btn btn-sm btn-primary">Edit</a>
                         <form action="{{ route('administrator.domain.destroy', $domain) }}" method="POST" class="d-inline">
