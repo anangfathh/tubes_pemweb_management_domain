@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -25,11 +25,11 @@
                     <td>{{ $domain->jenis_aplikasi }}</td>
                     <td><a href="{{ route('administrator.domain.show', $domain) }}" class="btn btn-sm btn-success">Show</a></td>
                     <td>
-                        <a href="{{ route('administrator.domain.edit', $domain) }}" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="{{ route('administrator.notification.create', $domain) }}" class="btn btn-sm btn-primary">Notify</a>
                         <form action="{{ route('administrator.domain.destroy', $domain) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this domain?')">Delete</button>
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this domain?')">delete</button>
                         </form>
                     </td>
                 </tr>

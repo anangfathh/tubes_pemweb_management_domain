@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('notifications', function (Blueprint $table) {
+            //
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('domain_id')->constrained('domains');
+            $table->string('subject');
+            $table->string('problem');
+            $table->text('message');
+            $table->string('status');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('notifications', function (Blueprint $table) {
+            //
+            $table->dropColumn('user_id');
+            $table->dropColumn('domain_id');
+            $table->dropColumn('subject');
+            $table->dropColumn('problem');
+            $table->dropColumn('message');
+            $table->dropColumn('status');
+        });
+    }
+};

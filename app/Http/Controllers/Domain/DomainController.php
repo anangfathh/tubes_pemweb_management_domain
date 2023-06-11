@@ -20,7 +20,7 @@ class DomainController extends Controller
      */
     public function index()
     {
-        $domains = Domain::where('unit_id', Auth::user()->id)->get();
+        $domains = Domain::where('unit_id', Auth::user()->unit_id)->get();
         return view('pages.administrator.domain.index', [
             'domains' => $domains
         ]);
