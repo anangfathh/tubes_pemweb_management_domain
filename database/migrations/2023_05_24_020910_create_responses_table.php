@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('responses', function (Blueprint $table) {
             $table->id();
+            $table->enum('status', ['Unresponed', 'Responed']);
+            $table->text('message');
             $table->timestamps();
         });
     }
