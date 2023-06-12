@@ -27,6 +27,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 
+
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/domains', [DomainController::class, 'index'])->name('administrator.domain.index');
     Route::get('/domains/create', [DomainController::class, 'create'])->name('administrator.domain.create');
