@@ -230,4 +230,11 @@ class DomainController extends Controller
                 'message' => 'Terjadi kesalahan saat mengupload gambar'
             ]);
     }
+
+    public function httpActive()
+    {
+        $activeHttpCount = Domain::where('http_status', 'aktif')->count();
+
+        return view('admin-home', compact('activeHttpCount'));
+    }
 }

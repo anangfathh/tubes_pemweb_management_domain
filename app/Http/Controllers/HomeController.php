@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Domain;
+use App\Models\User;
+use App\Models\Unit;
 
 class HomeController extends Controller
 {
@@ -27,6 +30,8 @@ class HomeController extends Controller
     }
     public function adminHome()
     {
-        return view('admin-home');
+        $userCount = User::all()->count();
+        $unitCount = Unit::all()->count();
+        return view('admin-home', compact('userCount', 'unitCount'));
     }
 }
