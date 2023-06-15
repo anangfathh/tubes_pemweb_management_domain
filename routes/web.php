@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Server\ServerController;
 use App\Http\Controllers\Unit\UnitController;
 use App\Http\Controllers\Domain\DomainController;
 use App\Http\Controllers\Notification\NotificationController;
@@ -49,6 +51,24 @@ Route::middleware('auth')->group(function () {
     Route::get('/administrator/unit/{unit}/edit', [UnitController::class, 'edit'])->name('administrator.unit.edit');
     Route::put('/administrator/unit/{unit}', [UnitController::class, 'update'])->name('administrator.unit.update');
     Route::delete('/administrator/unit/{unit}', [UnitController::class, 'destroy'])->name('administrator.unit.destroy');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/administrator/user', [UserController::class, 'index'])->name('administrator.user.index');
+    Route::get('/administrator/user/create', [UserController::class, 'create'])->name('administrator.user.create');
+    Route::post('/administrator/user', [UserController::class, 'store'])->name('administrator.user.store');
+    Route::get('/administrator/user/{user}/edit', [UserController::class, 'edit'])->name('administrator.user.edit');
+    Route::put('/administrator/user/{user}', [UserController::class, 'update'])->name('administrator.user.update');
+    Route::delete('/administrator/user/{user}', [UserController::class, 'destroy'])->name('administrator.user.destroy');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/administrator/server', [ServerController::class, 'index'])->name('administrator.server.index');
+    Route::get('/administrator/server/create', [ServerController::class, 'create'])->name('administrator.server.create');
+    Route::post('/administrator/server', [ServerController::class, 'store'])->name('administrator.server.store');
+    Route::get('/administrator/server/{server}/edit', [ServerController::class, 'edit'])->name('administrator.server.edit');
+    Route::put('/administrator/server/{server}', [ServerController::class, 'update'])->name('administrator.server.update');
+    Route::delete('/administrator/server/{server}', [ServerController::class, 'destroy'])->name('administrator.server.destroy');
 });
 
 

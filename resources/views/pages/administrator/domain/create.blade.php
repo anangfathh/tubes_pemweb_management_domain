@@ -6,6 +6,10 @@
         <form action="{{ route('administrator.domain.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
+                <label for="name">URL</label>
+                <input type="text" name="name" id="name" class="form-control" required>
+            </div>
+            <div class="form-group">
                 <label for="url">URL</label>
                 <input type="text" name="url" id="url" class="form-control" required>
             </div>

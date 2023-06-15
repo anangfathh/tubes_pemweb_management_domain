@@ -12,7 +12,7 @@ class DomainImage extends Model
 
     public function domain()
     {
-        return $this->belonsTo(Domain::class);
+        return $this->belongsTo(Domain::class);
     }
 
     public function scopeDomainId($query, $domainId)

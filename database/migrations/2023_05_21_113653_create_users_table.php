@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('unit_id');
             $table->boolean('is_admin')->default(0);
             $table->string('name');
+            $table->string('phone_number');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
