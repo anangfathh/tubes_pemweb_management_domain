@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('server_id')->constrained('servers');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('unit_id')->constrained('units');
+            $table->string('name');
             $table->string('url');
             $table->text('desc');
             $table->string('jenis_aplikasi');

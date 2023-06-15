@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('responses', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['Unresponed', 'Responed']);
+            $table->foreignId('notification_id')->constrained('notifications');
+            $table->foreignId('user_id')->constrained('users');
             $table->text('message');
+            $table->string('status');
             $table->timestamps();
         });
     }

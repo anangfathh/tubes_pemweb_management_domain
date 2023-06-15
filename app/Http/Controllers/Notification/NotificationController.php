@@ -36,7 +36,7 @@ class NotificationController extends Controller
         $notification->domain_id = $domain->id;
         $notification->subject = $request->input('subject');
         $notification->problem = $request->input('problem');
-        $notification->status = $request->input('status');
+        $notification->status = "Unrespond";
         $notification->message = $request->input('message');
         $notification->save();
 
