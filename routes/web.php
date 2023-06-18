@@ -3,11 +3,11 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\User\UserController;
-use App\Http\Controllers\Server\ServerController;
-use App\Http\Controllers\Unit\UnitController;
-use App\Http\Controllers\Domain\DomainController;
-use App\Http\Controllers\Notification\NotificationController;
+use App\Http\Controllers\Administrator\User\UserController;
+use App\Http\Controllers\Administrator\Server\ServerController;
+use App\Http\Controllers\Administrator\Unit\UnitController;
+use App\Http\Controllers\Administrator\Domain\DomainController;
+use App\Http\Controllers\Administrator\Notification\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,16 +23,19 @@ use App\Http\Controllers\Notification\NotificationController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/landing', function () {
+    return view('landing');
+});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 
 
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/domains', [DomainController::class, 'index'])->name('administrator.domain.index');
+    Route::get('/domains', [DomainController::class, 'index'])->name('administrator.domain.index')->middleware('is_admin');
     Route::get('/domains/create', [DomainController::class, 'create'])->name('administrator.domain.create');
     Route::get('/domains/{id}', [DomainController::class, 'show'])->name('administrator.domain.show');
     Route::post('/domains', [DomainController::class, 'store'])->name('administrator.domain.store');
@@ -60,6 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/administrator/user/{user}/edit', [UserController::class, 'edit'])->name('administrator.user.edit');
     Route::put('/administrator/user/{user}', [UserController::class, 'update'])->name('administrator.user.update');
     Route::delete('/administrator/user/{user}', [UserController::class, 'destroy'])->name('administrator.user.destroy');
+    Route::get('/users/{id}/change-role', [UserController::class, 'changeRole'])->name('user.changeRole');
 });
 
 Route::middleware('auth')->group(function () {
@@ -74,7 +78,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::prefix('notifications')->group(function () {
-    Route::get('/', [NotificationController::class, 'index'])->name('administrator.notification.index');
-    Route::get('/create/{domain}', [NotificationController::class, 'create'])->name('administrator.notification.create');
-    Route::post('/store/{domain}', [NotificationController::class, 'store'])->name('administrator.notification.store');
+    Route::get('/administrator/notif', [NotificationController::class, 'index'])->name('administrator.notification.index');
+    Route::get('/administrator/notif/create/{domain}', [NotificationController::class, 'create'])->name('administrator.notification.create');
+    Route::post('/administrator/notif/store/{domain}', [NotificationController::class, 'store'])->name('administrator.notification.store');
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Domain;
+namespace App\Http\Controllers\Administrator\Domain;
 
 use App\Models\User;
 use App\Models\Domain;

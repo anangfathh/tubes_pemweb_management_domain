@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Server;
+namespace App\Http\Controllers\Administrator\Server;
 
 use Illuminate\Http\Request;
 use App\Models\Server;
@@ -28,18 +28,18 @@ class ServerController extends Controller
             'name' => 'required|unique:servers'
         ]);
 
-        server::create($request->all());
+        Server::create($request->all());
         return redirect()->route('administrator.server.index')->with('success', 'server created successfully');
     }
 
     // Show the form to edit a server
-    public function edit(server $server)
+    public function edit(Server $server)
     {
         return view('pages.administrator.server.edit', compact('server'));
     }
 
     // Update a server in the database
-    public function update(Request $request, server $server)
+    public function update(Request $request, Server $server)
     {
         $request->validate([
             'name' => 'required|unique:servers,name,' . $server->id
@@ -50,7 +50,7 @@ class ServerController extends Controller
     }
 
     // Delete a server from the database
-    public function destroy(server $server)
+    public function destroy(Server $server)
     {
         $server->delete();
         return redirect()->route('administrator.server.index')->with('success', 'server deleted successfully');

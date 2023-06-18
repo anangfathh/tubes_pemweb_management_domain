@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Administrator\User;
 
 // use App\Models\user;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -55,7 +56,31 @@ class UserController extends Controller
     // Delete a user from the database
     public function destroy(user $user)
     {
-        $user->delete();
-        return redirect()->route('administrator.user.index')->with('success', 'user deleted successfully');
+        try {
+            if (Auth::user()->id === $user->id) {
+                $user->delete();
+                Auth::logout();
+                // Redirect ke halaman utama
+                return redirect()->route('home')->with('success', 'Akun dihapus dan Anda telah logout.');
+            }
+
+            $user->delete();
+            return redirect()->route('administrator.user.index')->with('success', ['name' => $user->name . " Delete Succesfully"]);
+        } catch (\Exception $e) {
+            return redirect()->route('administrator.user.index')->with('error', 'Failed to change role. Error: ' . $e->getMessage());
+        }
+    }
+
+    public function changeRole($id)
+    {
+        try {
+            $user = User::findOrFail($id);
+            $user->is_admin = $user->is_admin === 0 ? 1 : 0;
+            $user->save();
+
+            return redirect()->route('administrator.user.index')->with('success', ['name' => $user->name . " Role Changed Succesfully"]);
+        } catch (\Exception $e) {
+            return redirect()->route('administrator.user.index')->with('error', 'Failed to change role. Error: ' . $e->getMessage());
+        }
     }
 }
