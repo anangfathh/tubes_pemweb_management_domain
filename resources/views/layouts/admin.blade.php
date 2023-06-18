@@ -81,8 +81,24 @@
                     <span>Domain List</span>
                 </a>
             </li>
+
+            <li
+                class="sidebar-item {{ request()->routeIs('administrator.notification.index') ? 'active' : '' }}">
+                <a href="{{ route('administrator.notification.index') }}" class='sidebar-link'>
+                   <i class="bi bi-bell-fill"></i>
+                    <span>Notifications</span>
+                </a>
+            </li>
             
         </ul>
+        <div class="d-flex align-items-center flex-column mt-5 ">
+            <div class="col-4 mt-5 pt-5">
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="btn btn-danger mt-5">Log Out</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
         </div>
@@ -110,6 +126,10 @@
 <script src="{{ asset('js/pages/dashboard.js') }}"></script>
 <script src="{{ asset('extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
 <script src="{{ asset('js/pages/simple-datatables.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.5.0/js/bootstrap.min.js"></script>
+
 
 </body>
 

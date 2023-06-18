@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Notification;
+namespace App\Http\Controllers\Administrator\Notification;
 
 use App\Models\User;
 use App\Models\Domain;

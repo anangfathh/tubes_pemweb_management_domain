@@ -31,6 +31,17 @@
                 <a href="{{ route('administrator.unit.create') }}" class="btn btn-success mb-3">Create Unit</a>
             </div>
             <div class="card-body">
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>

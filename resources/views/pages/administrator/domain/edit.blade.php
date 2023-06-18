@@ -1,7 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+<div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
         <h1>Edit Domain</h1>
         <form action="{{ route('administrator.domain.update', $domain) }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -51,8 +56,8 @@
                                                     Maks 3 image
                                                 </p> --}}
                                                 <input type="file" id="input-file-now-custom-3" class="dropify"
-                                                    data-height="500" name="images[]" multiple required />
+                                                    data-height="500" name="images[]" multiple />
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
-    </div>
+
 @endsection
