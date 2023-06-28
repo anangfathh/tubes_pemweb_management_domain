@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Administrator\Domain;
+namespace App\Http\Controllers\Domain;
 
 use App\Models\User;
 use App\Models\Domain;
@@ -236,5 +236,13 @@ class DomainController extends Controller
         $activeHttpCount = Domain::where('http_status', 'aktif')->count();
 
         return view('admin-home', compact('activeHttpCount'));
+    }
+
+    public function domainForPic()
+    {
+        $domains = Domain::where('user_id', Auth::user()->id)->get();
+        return view('pages.pic.domain.index', [
+            'domains' => $domains
+        ]);
     }
 }
