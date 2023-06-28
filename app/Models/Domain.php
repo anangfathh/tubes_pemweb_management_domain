@@ -43,4 +43,9 @@ class Domain extends Model
 
         return false;
     }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 }

@@ -22,13 +22,11 @@
                 {{-- <input type="text" name="problem" id="problem" class="form-control"> --}}
                 <div class="form-group">
                     <select class="choices form-select" name="problem" id="problem">
-                        <option value="square">Hacked</option>
-                        <option value="rectangle">Bug</option>
-                        <option value="rombo">Other</option>
-                        <option value="romboid">Romboid</option>
-                        <option value="trapeze">Trapeze</option>
-                        <option value="traible">Triangle</option>
-                        <option value="polygon">Polygon</option>
+                        <option value="Hacked">Hacked</option>
+                        <option value="Bug">Bug</option>
+                        <option value="Update">Update</option>
+                        <option value="Expired">Expired</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
             </div>

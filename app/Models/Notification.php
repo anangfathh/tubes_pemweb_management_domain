@@ -19,4 +19,8 @@ class Notification extends Model
     {
         return $this->hasMany(Response::class);
     }
+    public function domain()
+    {
+        return $this->belongsTo(Domain::class);
+    }
 }

@@ -3,11 +3,12 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Administrator\User\UserController;
-use App\Http\Controllers\Administrator\Server\ServerController;
-use App\Http\Controllers\Administrator\Unit\UnitController;
-use App\Http\Controllers\Administrator\Domain\DomainController;
-use App\Http\Controllers\Administrator\Notification\NotificationController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Server\ServerController;
+use App\Http\Controllers\Unit\UnitController;
+use App\Http\Controllers\Domain\DomainController;
+use App\Http\Controllers\Notification\NotificationController;
+use App\Models\Notification;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,4 +82,14 @@ Route::prefix('notifications')->group(function () {
     Route::get('/administrator/notif', [NotificationController::class, 'index'])->name('administrator.notification.index');
     Route::get('/administrator/notif/create/{domain}', [NotificationController::class, 'create'])->name('administrator.notification.create');
     Route::post('/administrator/notif/store/{domain}', [NotificationController::class, 'store'])->name('administrator.notification.store');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::prefix('PIC')->group(function () {
+        Route::get('/domains', [DomainController::class, 'domainForPic'])->name('pic.domains');
+        Route::get('/notifs', [NotificationController::class, 'showNotifications'])->name('pic.notif');
+        Route::get('/notif/response/{id}', [NotificationController::class, 'showResponse'])->name('pic.response');
+        Route::post('/response/{id}', [NotificationController::class, 'sendResponse'])->name('pic.response.send');
+        Route::get('/response/status/{id}', [NotificationController::class, 'targetDone'])->name('pic.response.status');
+    });
 });
