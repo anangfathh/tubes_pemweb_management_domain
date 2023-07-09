@@ -1,24 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
-<div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
             
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Notifiactions List</h3>
+                <h3>Notifications List</h3>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Server List</li>
+                        <li class="breadcrumb-item active" aria-current="page">Notifications List</li>
                     </ol>
                 </nav>
             </div>
@@ -49,7 +43,7 @@
                                 {{ $notification->problem }}
                             </td>
                             <td>
-                                <span class="badge bg-light-danger">{{ $notification->status }}</span>
+                                @if(strtolower($notification->status) === 'unrespond') <span class="badge bg-danger">{{ $notification->status }}</span> @elseif($notification->status === 'doing') <span class="badge bg-info">{{ ucfirst($notification->status) }}</span> @else <span class="badge bg-success">{{ ucfirst($notification->status) }}</span> @endif
                             </td>
                             <td>
                                 <a href="{{ route('administrator.server.edit', $notification->id) }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>

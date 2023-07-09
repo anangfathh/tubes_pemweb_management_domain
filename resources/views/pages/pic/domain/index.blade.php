@@ -31,7 +31,6 @@
                             <th>Jenis Aplikasi</th>
                             <th>Port</th>
                             <th>HTTP Status</th>
-                            <th>Notifications</th>
                             <th class="col-4 col-lg-2 col-md-4">Action</th>
                         </tr>
                     </thead>
@@ -52,9 +51,6 @@
                             </td>
                             <td>
                                 {{ $domain->http_status }}
-                            </td>
-                            <td>
-                                <a href="{{ route('administrator.notification.create', $domain) }}" class="btn btn-warning"><i class="bi bi-bell"></i></a>
                             </td>
                             <td>
                                 <a href="{{ route('administrator.domain.show', $domain->id) }}" class="btn btn-success"><i class="bi bi-eye-fill"></i></i></a>

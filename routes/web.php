@@ -32,12 +32,14 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
+Route::get('/report', [UnitController::class, 'report'])->name('report');
 
 
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/domains', [DomainController::class, 'index'])->name('administrator.domain.index')->middleware('is_admin');
     Route::get('/domains/create', [DomainController::class, 'create'])->name('administrator.domain.create');
+    Route::get('/domains/export', [DomainController::class, 'exportToExcel'])->name('administrator.domain.export');
     Route::get('/domains/{id}', [DomainController::class, 'show'])->name('administrator.domain.show');
     Route::post('/domains', [DomainController::class, 'store'])->name('administrator.domain.store');
     Route::get('/domains/{domain}/edit', [DomainController::class, 'edit'])->name('administrator.domain.edit');

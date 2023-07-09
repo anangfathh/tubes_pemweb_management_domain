@@ -1,12 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-<div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
             
 <div class="page-heading">
     <div class="page-title">
@@ -28,6 +22,7 @@
         <div class="card">
             <div class="card-header mt-4 ms-2">
                 <a href="{{ route('administrator.domain.create') }}" class="btn btn-success mb-3">Create domain</a>
+                <a href="{{ route('administrator.domain.export') }}" class="btn btn-info mb-3 ms-2">Export</a>
             </div>
             <div class="card-body">
                 <table class="table table-striped" id="table1">

@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Domain\CreateRequest;
 use App\Http\Requests\Domain\UpdateRequest;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Font;
 
 class DomainController extends Controller
 {
@@ -83,7 +89,7 @@ class DomainController extends Controller
      */
     public function show(string $id)
     {
-        $domain = Domain::findOrFail($id);
+        $domain = Domain::with('image', 'user', 'server', 'unit')->where('id', $id)->first();
         $domainImages = DomainImage::where('domain_id', $id)->get();
 
         return view('pages.administrator.domain.show', [
@@ -160,7 +166,7 @@ class DomainController extends Controller
 
             return redirect()
                 ->route('administrator.domain.index')
-                ->with('message', 'Produk berhasil dihapus');
+                ->with('message', 'Domain berhasil dihapus');
         }
 
         return redirect()
@@ -244,5 +250,68 @@ class DomainController extends Controller
         return view('pages.pic.domain.index', [
             'domains' => $domains
         ]);
+    }
+
+    public function exportToExcel()
+    {
+        if (Auth::user()->is_admin === 1) {
+            $domains = Domain::with('user', 'server')->get();
+        } else {
+            $domains = Domain::where('user_id', Auth::user()->id)->get();
+        }
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $headers = ['Domain Id', 'Domain Name', 'HTTP Status', 'URL', 'Port', 'PIC Name', 'No. HP PIC']; // Replace with your actual column headers
+        $sheet->fromArray($headers, null, 'A1');
+
+        $headerStyle = [
+            'font' => ['bold' => true, 'name' => 'Times New Roman'],
+            'alignment' => ['horizontal' => Alignment::HORIZONTAL_CENTER],
+            'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['rgb' => 'D9D9D9']],
+            'borders' => ['allBorders' => ['borderStyle' => Border::BORDER_THIN, 'color' => ['rgb' => '000000']]]
+        ];
+        $sheet->getStyle('A1:G1')->applyFromArray($headerStyle);
+
+        $row = 2;
+        foreach ($domains as $domain) {
+            $sheet->setCellValue('A' . $row, $domain->id);
+            $sheet->setCellValue('B' . $row, $domain->name);
+            $sheet->setCellValue('C' . $row, $domain->http_status);
+            $sheet->setCellValue('D' . $row, $domain->url);
+            $sheet->setCellValue('E' . $row, $domain->port);
+            $sheet->setCellValue('F' . $row, $domain->user->name);
+            $sheet->setCellValue('G' . $row, $domain->user->phone_number);
+            // Add more columns as neede
+
+            $dataStyle = [
+                'font' => ['bold' => false, 'name' => 'Times New Roman'],
+                'alignment' => ['horizontal' => Alignment::HORIZONTAL_LEFT],
+                'borders' => ['allBorders' => ['borderStyle' => Border::BORDER_THIN, 'color' => ['rgb' => '000000']]]
+            ];
+            $sheet->getStyle('A' . $row . ':G' . $row)->applyFromArray($dataStyle);
+
+            $row++;
+        }
+
+
+        // Set column widths
+        $sheet->getColumnDimension('A')->setWidth(15);
+        $sheet->getColumnDimension('B')->setWidth(25);
+        $sheet->getColumnDimension('C')->setWidth(10);
+        $sheet->getColumnDimension('D')->setWidth(25);
+        $sheet->getColumnDimension('E')->setWidth(8);
+        $sheet->getColumnDimension('F')->setWidth(25);
+        $sheet->getColumnDimension('G')->setWidth(15);
+
+        $writer = new Xlsx($spreadsheet);
+        $filename = 'export.xlsx';
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $filename . '"');
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
     }
 }

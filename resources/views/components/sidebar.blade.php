@@ -21,26 +21,26 @@
             <li class="sidebar-title">Menu</li>
             
             <li
-                class="sidebar-item">
-                <a href="{{ route('pic.domains') }}" class='sidebar-link'>
+                class="sidebar-item {{ request()->routeIs('home') ? 'active' : '' }}">
+                <a href="{{ route('home') }}" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li
+                class="sidebar-item {{ request()->routeIs('pic.domains') ? 'active' : '' }}">
+                <a href="{{ route('pic.domains') }}" class='sidebar-link'>
+                    <i class="bi bi-globe"></i>
                     <span>Domain List</span>
                 </a>
             </li>
 
             <li
-                class="sidebar-item">
+                class="sidebar-item  {{ request()->routeIs('pic.notif') ? 'active' : '' }}">
                 <a href="{{ route('pic.notif') }}" class='sidebar-link'>
                     <i class="bi bi-list-ul"></i>
                     <span>Notifications</span>
-                </a>
-            </li>
-
-            <li
-                class="sidebar-item">
-                <a href=" " class='sidebar-link'>
-                    <i class="bi bi-check-square"></i>
-                    <span>Accepted Order</span>
                 </a>
             </li>
             

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Unit;
 
-use Illuminate\Http\Request;
 use App\Models\Unit;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UnitController extends Controller
 {
@@ -54,5 +55,16 @@ class UnitController extends Controller
     {
         $unit->delete();
         return redirect()->route('administrator.unit.index')->with('success', 'Unit deleted successfully');
+    }
+
+    public function report()
+    {
+        $units = Unit::all();
+
+        if (Auth::user()->is_admin != 1) {
+            $units->where('id', auth()->user()->unit_id)->first();
+        }
+
+        return view('pages.administrator.report.index', compact('units'));
     }
 }

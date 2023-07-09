@@ -1,13 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-<div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
-        <h1>Create Unit</h1>
+
+    <h1>Create Unit</h1>
     <div class="col-md-12 col-12">
                 <div class="card">
                     <div class="card-content">

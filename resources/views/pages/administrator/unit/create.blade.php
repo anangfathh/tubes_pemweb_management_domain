@@ -1,13 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
-        <h1>Create Unit</h1>
+<h1>Create Unit</h1>
     <div class="col-md-12 col-12">
                 <div class="card">
                     <div class="card-content">
@@ -19,11 +13,27 @@
                                         <div class="col-12">
                                             <div class="form-group has-icon-left">
                                                 <label for="name">Name</label>
-                                                <div class="position-relative">
+                                                <div class="position-relative mb-3">
                                                     <input type="text" class="form-control"
-                                                        placeholder="Input with icon left" name="name" id="name">
+                                                        placeholder="Unit Name" name="name" id="name">
                                                     <div class="form-control-icon">
-                                                        <i class="bi bi-person"></i>
+                                                        <i class="bi bi-house-door"></i>
+                                                    </div>
+                                                </div>
+                                                <label for="desc">Description</label>
+                                                <div class="position-relative mb-3">
+                                                    <textarea class="form-control"
+                                                    placeholder="Unit Description" name="desc" id="desc"></textarea>
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-journal"></i>
+                                                    </div>
+                                                </div>
+                                                <label for="higher_domain">Sub Domain</label>
+                                                <div class="position-relative mb-3">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Unit Sub Domain" name="higher_domain" id="higher_domain">
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-globe"></i>
                                                     </div>
                                                 </div>
                                             </div>
