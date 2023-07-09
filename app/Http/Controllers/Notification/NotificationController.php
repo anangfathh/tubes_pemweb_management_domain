@@ -56,6 +56,20 @@ class NotificationController extends Controller
         return view('pages.pic.notif.index', compact('notifications'));
     }
 
+    public function showRecentNotifications()
+    {
+        $userId = Auth::user()->id;
+
+        $notifications = Notification::join('domains', 'notifications.domain_id', '=', 'domains.id')
+            ->where('domains.user_id', $userId)
+            ->select('notifications.*')
+            ->with('user', 'domain', 'response')
+            ->orderBy('created_at', 'desc')
+            ->take(3)
+            ->get();
+        return view('home', compact('notifications'));
+    }
+
     public function showResponse(string $id)
     {
         $notification = Notification::with('user', 'domain', 'response')

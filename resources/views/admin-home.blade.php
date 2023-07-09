@@ -1,13 +1,6 @@
 @extends('layouts.admin')
 
-
-        <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
-            
+@section('content')
 <div class="page-heading">
     <h3>Admin Dashboard</h3>
 </div>
@@ -150,4 +143,4 @@
         </div>
     </section>
 </div>
-
+@endsection
