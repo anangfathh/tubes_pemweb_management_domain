@@ -22,8 +22,9 @@ use App\Models\Notification;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('auth.login');
+})->middleware('guest');
+
 Route::get('/landing', function () {
     return view('landing');
 });
@@ -36,7 +37,7 @@ Route::get('/report', [UnitController::class, 'report'])->name('report');
 
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth', 'is_admin'], function () {
     Route::get('/domains', [DomainController::class, 'index'])->name('administrator.domain.index')->middleware('is_admin');
     Route::get('/domains/create', [DomainController::class, 'create'])->name('administrator.domain.create');
     Route::get('/domains/export', [DomainController::class, 'exportToExcel'])->name('administrator.domain.export');
@@ -84,12 +85,14 @@ Route::prefix('notifications')->group(function () {
     Route::get('/administrator/notif', [NotificationController::class, 'index'])->name('administrator.notification.index');
     Route::get('/administrator/notif/create/{domain}', [NotificationController::class, 'create'])->name('administrator.notification.create');
     Route::post('/administrator/notif/store/{domain}', [NotificationController::class, 'store'])->name('administrator.notification.store');
+    Route::get('/notif/pantau/{id}', [NotificationController::class, 'showResponse'])->name('admin.pantau');
 });
 
 Route::middleware('auth')->group(function () {
     Route::prefix('PIC')->group(function () {
         Route::get('/domains', [DomainController::class, 'domainForPic'])->name('pic.domains');
         Route::get('/notifs', [NotificationController::class, 'showNotifications'])->name('pic.notif');
+        Route::get('/notif/{id}', [NotificationController::class, 'fixedButton'])->name('pic.notif.fixed');
         Route::get('/notif/response/{id}', [NotificationController::class, 'showResponse'])->name('pic.response');
         Route::post('/response/{id}', [NotificationController::class, 'sendResponse'])->name('pic.response.send');
         Route::get('/response/status/{id}', [NotificationController::class, 'targetDone'])->name('pic.response.status');

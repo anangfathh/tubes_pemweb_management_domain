@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('servers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('unit_id')->constrained('units');
             $table->string('ip_address');
             $table->string('processor');
             $table->integer('jumlah_core');
             $table->integer('ram');
-            $table->string('jenis_server');
             $table->enum('jenis', ['virtual', 'fisik'])->nullable();
             $table->enum('status', ['aktif', 'non-aktif', 'suspend'])->nullable();
             $table->timestamps();

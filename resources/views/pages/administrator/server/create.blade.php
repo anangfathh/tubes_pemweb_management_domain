@@ -74,6 +74,17 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <div>
+                                                    <label for="status" class="form-label">Unit</label>
+                                                    {{-- <input type="text" name="problem" id="problem" class="form-control"> --}}
+                                                    <div class="form-group">
+                                                        <select class="choices form-select" name="unit_id" id="unit_id">
+                                                            @foreach ($units as $unit)
+                                                            <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-12">

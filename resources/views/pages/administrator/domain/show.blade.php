@@ -43,7 +43,7 @@
                             <p> : </p>
                         </td>
                         <td>
-                            <p>{{ $domain->unit->name }}</p>
+                            <p>{{ $domain->server->unit->name }}</p>
                         </td>
                     </tr>
                     <tr>

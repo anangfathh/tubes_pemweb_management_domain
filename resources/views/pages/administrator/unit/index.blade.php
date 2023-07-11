@@ -40,6 +40,8 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Desc</th>
+                            <th>Sub Domain</th>
                             <th class="col-4 col-lg-2 col-md-4">Action</th>
                         </tr>
                     </thead>
@@ -48,6 +50,12 @@
                         <tr>
                             <td>
                                 {{ $unit->name }}
+                            </td>
+                            <td>
+                                {{ $unit->desc }}
+                            </td>
+                            <td>
+                                {{ $unit->higher_domain }}
                             </td>
                             <td>
                                 <a href="{{ route('administrator.unit.edit', $unit->id) }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>

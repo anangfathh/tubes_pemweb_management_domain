@@ -26,7 +26,7 @@ class DomainController extends Controller
      */
     public function index()
     {
-        $domains = Domain::where('unit_id', Auth::user()->unit_id)->get();
+        $domains = Domain::all();
         return view('pages.administrator.domain.index', [
             'domains' => $domains
         ]);
@@ -37,7 +37,7 @@ class DomainController extends Controller
      */
     public function create()
     {
-        $servers = Server::all();
+        $servers = Server::where('unit_id', Auth::user()->unit_id)->get();
         $users = User::where('unit_id', Auth::user()->unit_id)->get();
 
         return view('pages.administrator.domain.create', compact('servers', 'users'));
@@ -61,8 +61,6 @@ class DomainController extends Controller
 
     private function storedomain($request): Domain
     {
-        $request['unit_id'] = Auth::user()->unit_id;
-
         return Domain::create($request);
     }
 
@@ -89,7 +87,7 @@ class DomainController extends Controller
      */
     public function show(string $id)
     {
-        $domain = Domain::with('image', 'user', 'server', 'unit')->where('id', $id)->first();
+        $domain = Domain::with('image', 'user', 'server')->where('id', $id)->first();
         $domainImages = DomainImage::where('domain_id', $id)->get();
 
         return view('pages.administrator.domain.show', [
@@ -107,7 +105,7 @@ class DomainController extends Controller
             $domainImages = DomainImage::where('domain_id', $domain->id)->get();
 
             return view('pages.administrator.domain.edit', [
-                'servers' => Server::all(),
+                'servers' => Server::where('unit_id', Auth::user()->unit_id)->get(),
                 'users' => User::where('unit_id', Auth::user()->unit_id)->get(),
                 'domain' => $domain,
                 'domainImages' => $domainImages

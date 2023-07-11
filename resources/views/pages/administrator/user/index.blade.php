@@ -23,7 +23,7 @@
             <div class="card-body">
                                 @if (session('error'))
     <div class="alert alert-danger">
-        {{ session('error') }}
+        User gagal terhapus, pastikan sudah tidak ada data yang berkaitan dengan user ini!!
     </div>
 @endif
 

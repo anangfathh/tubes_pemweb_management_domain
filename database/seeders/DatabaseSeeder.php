@@ -24,50 +24,81 @@ class DatabaseSeeder extends Seeder
 
         Unit::create([
             'name' => 'Fakultas Teknologi Informasi dan Sains Data',
+            'desc' => 'FATISDA',
+            'higher_domain' => "fatisda.uns.ac.id"
+
         ]);
 
         Unit::create([
             'name' => 'Fakultas Matematika dan Ilmu Pengetahuan Alam',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fmipa.uns.ac.id'
         ]);
 
         Unit::create([
             'name' => 'Fakultas Pertanian',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fmipa.uns.ac.id'
         ]);
         Unit::create([
             'name' => 'Fakultas Keguruan dan Ilmu Pendidikan',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fkip.uns.ac.id'
         ]);
         Unit::create([
             'name' => 'Fakultas Kedokteran',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fk.uns.ac.id'
         ]);
         Unit::create([
             'name' => 'Fakultas Teknik',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'ft.uns.ac.id'
         ]);
         Unit::create([
             'name' => 'Fakultas Hukum',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fh.uns.ac.id'
         ]);
         Unit::create([
             'name' => 'Fakultas Ekonomi dan Bisnis',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'feb.uns.ac.id'
         ]);
         Unit::create([
             'name' => 'Fakultas Sosial dan Politik',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fisip.uns.ac.id'
         ]);
         Unit::create([
             'name' => 'Fakultas Keolahragaan',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fkor.uns.ac.id'
         ]);
         Unit::create([
             'name' => 'Fakultas Ilmu Budaya',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fib.uns.ac.id'
         ]);
         Unit::create([
             'name' => 'Fakultas Psikologi',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fapsi.uns.ac.id'
         ]);
         Unit::create([
             'name' => 'Fakultas Seni Rupa dan Desain',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fsrd.uns.ac.id'
         ]);
         Unit::create([
             'name' => 'Pascasarjana',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'ps.uns.ac.id'
         ]);
         Unit::create([
             'name' => 'Sekolah Vokasi',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'sv.uns.ac.id'
         ]);
 
         Server::create([
@@ -76,8 +107,8 @@ class DatabaseSeeder extends Seeder
             'processor' => 'Intel Xeon Gold',
             'jumlah_core' => 12,
             'ram' => 64,
-            'jenis_server' => 'Web Server',
             'jenis' => 'fisik',
+            'unit_id' => 1,
             'status' => 'aktif'
         ]);
         Server::create([
@@ -86,7 +117,7 @@ class DatabaseSeeder extends Seeder
             'processor' => 'AMD Ryzen Threadripper',
             'jumlah_core' => 16,
             'ram' => 64,
-            'jenis_server' => 'Email Server',
+            'unit_id' => 1,
             'jenis' => 'fisik',
             'status' => 'aktif'
         ]);

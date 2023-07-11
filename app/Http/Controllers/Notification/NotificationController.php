@@ -76,7 +76,11 @@ class NotificationController extends Controller
             ->where('id', $id)
             ->first();
 
-        return view('pages.pic.notif.response', compact('notification'));
+        if (Auth::user()->is_admin != 1) {
+            return view('pages.pic.notif.response', compact('notification'));
+        } else {
+            return view('pages.administrator.notif.show', compact('notification'));
+        }
     }
 
     public function sendResponse(Request $request, string $id)
@@ -110,5 +114,15 @@ class NotificationController extends Controller
         $response->save();
 
         return redirect()->route('pic.response', ['id' => $response->notification_id])->with('success', 'Response Has Been Send');
+    }
+
+    public function fixedButton($id)
+    {
+        $notification = Notification::findOrFail($id);
+
+        $notification->status = 'done';
+        $notification->save();
+
+        return redirect()->route('pic.notif')->with('success', 'Problem Has been Fixed');
     }
 }

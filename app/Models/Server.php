@@ -15,4 +15,9 @@ class Server extends Model
     {
         return $this->hasMany(Domain::class);
     }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
 }
