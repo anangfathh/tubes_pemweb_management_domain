@@ -47,7 +47,7 @@
     </div>
     @endforeach
 
-    <div>
+    <div class="d-flex mb-4">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="bi bi-arrow-up-right-square-fill"></i> <span class="ms-3">Add New Response</span>
@@ -78,10 +78,14 @@
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-primary">Send</button>
                                         </form>
-                                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Done</button>
-                                        </div>
+                                    </div>
             </div>
         </div>
         </div>
+        <form action="{{ route('pic.notif.fixed', ['id' => $notification->id]) }}">
+            <button class="btn btn-success ms-3">
+                Fixed
+            </button>
+        </form>
     </div>
 @endsection

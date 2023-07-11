@@ -22,11 +22,6 @@ class Domain extends Model
         return $this->belongsTo(Server::class);
     }
 
-    public function unit()
-    {
-        return $this->belongsTo(Unit::class);
-    }
-
     public function image()
     {
         return $this->hasMany(DomainImage::class);

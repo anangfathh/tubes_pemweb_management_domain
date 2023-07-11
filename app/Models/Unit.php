@@ -16,4 +16,8 @@ class Unit extends Model
     {
         return $this->hasMany(User::class);
     }
+    public function server()
+    {
+        return $this->hasMany(Server::class);
+    }
 }

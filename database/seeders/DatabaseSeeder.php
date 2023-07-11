@@ -22,74 +22,105 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // Unit::create([
-        //     'name' => 'Fakultas Teknologi Informasi dan Sains Data',
-        // ]);
+        Unit::create([
+            'name' => 'Fakultas Teknologi Informasi dan Sains Data',
+            'desc' => 'FATISDA',
+            'higher_domain' => "fatisda.uns.ac.id"
 
-        // Unit::create([
-        //     'name' => 'Fakultas Matematika dan Ilmu Pengetahuan Alam',
-        // ]);
+        ]);
 
-        // Unit::create([
-        //     'name' => 'Fakultas Pertanian',
-        // ]);
-        // Unit::create([
-        //     'name' => 'Fakultas Keguruan dan Ilmu Pendidikan',
-        // ]);
-        // Unit::create([
-        //     'name' => 'Fakultas Kedokteran',
-        // ]);
-        // Unit::create([
-        //     'name' => 'Fakultas Teknik',
-        // ]);
-        // Unit::create([
-        //     'name' => 'Fakultas Hukum',
-        // ]);
-        // Unit::create([
-        //     'name' => 'Fakultas Ekonomi dan Bisnis',
-        // ]);
-        // Unit::create([
-        //     'name' => 'Fakultas Sosial dan Politik',
-        // ]);
-        // Unit::create([
-        //     'name' => 'Fakultas Keolahragaan',
-        // ]);
-        // Unit::create([
-        //     'name' => 'Fakultas Ilmu Budaya',
-        // ]);
-        // Unit::create([
-        //     'name' => 'Fakultas Psikologi',
-        // ]);
-        // Unit::create([
-        //     'name' => 'Fakultas Seni Rupa dan Desain',
-        // ]);
-        // Unit::create([
-        //     'name' => 'Pascasarjana',
-        // ]);
-        // Unit::create([
-        //     'name' => 'Sekolah Vokasi',
-        // ]);
+        Unit::create([
+            'name' => 'Fakultas Matematika dan Ilmu Pengetahuan Alam',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fmipa.uns.ac.id'
+        ]);
 
-        // Server::create([
-        //     'name' => 'Serenity Realm',
-        //     'ip_address' => '10.11.12.1',
-        //     'processor' => 'Intel Xeon Gold',
-        //     'jumlah_core' => 12,
-        //     'ram' => 64,
-        //     'jenis_server' => 'Web Server',
-        //     'jenis' => 'fisik',
-        //     'status' => 'aktif'
-        // ]);
-        // Server::create([
-        //     'name' => 'Eternity Forge',
-        //     'ip_address' => '10.11.12.2',
-        //     'processor' => 'AMD Ryzen Threadripper',
-        //     'jumlah_core' => 16,
-        //     'ram' => 64,
-        //     'jenis_server' => 'Email Server',
-        //     'jenis' => 'fisik',
-        //     'status' => 'aktif'
-        // ]);
+        Unit::create([
+            'name' => 'Fakultas Pertanian',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fmipa.uns.ac.id'
+        ]);
+        Unit::create([
+            'name' => 'Fakultas Keguruan dan Ilmu Pendidikan',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fkip.uns.ac.id'
+        ]);
+        Unit::create([
+            'name' => 'Fakultas Kedokteran',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fk.uns.ac.id'
+        ]);
+        Unit::create([
+            'name' => 'Fakultas Teknik',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'ft.uns.ac.id'
+        ]);
+        Unit::create([
+            'name' => 'Fakultas Hukum',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fh.uns.ac.id'
+        ]);
+        Unit::create([
+            'name' => 'Fakultas Ekonomi dan Bisnis',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'feb.uns.ac.id'
+        ]);
+        Unit::create([
+            'name' => 'Fakultas Sosial dan Politik',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fisip.uns.ac.id'
+        ]);
+        Unit::create([
+            'name' => 'Fakultas Keolahragaan',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fkor.uns.ac.id'
+        ]);
+        Unit::create([
+            'name' => 'Fakultas Ilmu Budaya',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fib.uns.ac.id'
+        ]);
+        Unit::create([
+            'name' => 'Fakultas Psikologi',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fapsi.uns.ac.id'
+        ]);
+        Unit::create([
+            'name' => 'Fakultas Seni Rupa dan Desain',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'fsrd.uns.ac.id'
+        ]);
+        Unit::create([
+            'name' => 'Pascasarjana',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'ps.uns.ac.id'
+        ]);
+        Unit::create([
+            'name' => 'Sekolah Vokasi',
+            'desc' => 'Universitas Sebelas Maret',
+            'higher_domain' => 'sv.uns.ac.id'
+        ]);
+
+        Server::create([
+            'name' => 'Serenity Realm',
+            'ip_address' => '10.11.12.1',
+            'processor' => 'Intel Xeon Gold',
+            'jumlah_core' => 12,
+            'ram' => 64,
+            'jenis' => 'fisik',
+            'unit_id' => 1,
+            'status' => 'aktif'
+        ]);
+        Server::create([
+            'name' => 'Eternity Forge',
+            'ip_address' => '10.11.12.2',
+            'processor' => 'AMD Ryzen Threadripper',
+            'jumlah_core' => 16,
+            'ram' => 64,
+            'unit_id' => 1,
+            'jenis' => 'fisik',
+            'status' => 'aktif'
+        ]);
 
         User::create([
             'name' => 'Admin Fatisda',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Server;
 use Illuminate\Http\Request;
 use App\Models\Server;
 use App\Http\Controllers\Controller;
+use App\Models\Unit;
 
 class ServerController extends Controller
 {
@@ -18,7 +19,8 @@ class ServerController extends Controller
     // Show the form to create a new server
     public function create()
     {
-        return view('pages.administrator.server.create');
+        $units = Unit::all();
+        return view('pages.administrator.server.create', compact('units'));
     }
 
     // Store a new server in the database

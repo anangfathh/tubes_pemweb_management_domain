@@ -46,7 +46,7 @@
                                 @if(strtolower($notification->status) === 'unrespond') <span class="badge bg-danger">{{ $notification->status }}</span> @elseif($notification->status === 'doing') <span class="badge bg-info">{{ ucfirst($notification->status) }}</span> @else <span class="badge bg-success">{{ ucfirst($notification->status) }}</span> @endif
                             </td>
                             <td>
-                                <a href="{{ route('administrator.server.edit', $notification->id) }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                                <a href="{{ route('admin.pantau',  $notification->id) }}" class="btn btn-warning"><i class="bi bi-eye"></i> Pantau</a>
                                 <form action="{{ route('administrator.server.destroy', $notification->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
