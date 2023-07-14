@@ -47,7 +47,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('admin.pantau',  $notification->id) }}" class="btn btn-warning"><i class="bi bi-eye"></i> Pantau</a>
-                                <form action="{{ route('administrator.server.destroy', $notification->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('administrator.notification.delete', $notification->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>

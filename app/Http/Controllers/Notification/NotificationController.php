@@ -44,6 +44,14 @@ class NotificationController extends Controller
         return redirect()->route('administrator.domain.index')->with('success', 'Notification created successfully.');
     }
 
+    public function delete(Notification $notification)
+    {
+
+        $notification->delete();
+
+        return redirect()->route('administrator.notification.index')->with('success', 'Notification delete successfully.');
+    }
+
     public function showNotifications()
     {
         $userId = Auth::user()->id;

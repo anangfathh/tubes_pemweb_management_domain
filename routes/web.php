@@ -62,10 +62,11 @@ Route::group(['middleware' => 'auth', 'is_admin'], function () {
     Route::post('/administrator/server', [ServerController::class, 'store'])->name('administrator.server.store');
     Route::get('/administrator/server/{server}/edit', [ServerController::class, 'edit'])->name('administrator.server.edit');
     Route::put('/administrator/server/{server}', [ServerController::class, 'update'])->name('administrator.server.update');
-    Route::delete('/administrator/server/{server}', [ServerController::class, 'destroy'])->name('administrator.server.destroy');
+    Route::delete('/administrator/server/{server}/delete', [ServerController::class, 'destroy'])->name('administrator.server.destroy');
     Route::get('/administrator/notif', [NotificationController::class, 'index'])->name('administrator.notification.index');
     Route::get('/administrator/notif/create/{domain}', [NotificationController::class, 'create'])->name('administrator.notification.create');
     Route::post('/administrator/notif/store/{domain}', [NotificationController::class, 'store'])->name('administrator.notification.store');
+    Route::delete('/administrator/notif/delete/{notification}', [NotificationController::class, 'delete'])->name('administrator.notification.delete');
     Route::get('/notif/pantau/{id}', [NotificationController::class, 'showResponse'])->name('admin.pantau');
 });
 

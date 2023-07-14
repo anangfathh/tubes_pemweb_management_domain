@@ -20,7 +20,8 @@
     <section class="section">
         <div class="card">
             <div class="card-header mt-4 ms-2">
-                <a href="{{ route('administrator.domain.export') }}" class="btn btn-info mb-3 ms-2">Export</a>
+                
+                <a href="{{ route('administrator.domain.export') }}" class="btn btn-info mb-3 ms-2"><i class="ph ph-file-xls"></i> Export</a>
             </div>
             <div class="card-body">
                 <table class="table table-striped" id="table1">
