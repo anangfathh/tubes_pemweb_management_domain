@@ -24,6 +24,19 @@
                 {{-- <a href="{{ route('administrator.server.create') }}" class="btn btn-success mb-3">Create server</a> --}}
             </div>
             <div class="card-body">
+                @if (session('error'))
+                        <div class="alert alert-danger alert-dismissible">
+                            Notif gagal terhapus, pastikan sudah tidak ada data yang berkaitan dengan Notif ini!!
+                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
+                    @if (session('success'))
+                        <div class="alert alert-light-success color-success alert-dismissible"><i class="bi bi-check-circle"></i>
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
@@ -47,7 +60,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('admin.pantau',  $notification->id) }}" class="btn btn-warning"><i class="bi bi-eye"></i> Pantau</a>
-                                <form action="{{ route('administrator.server.destroy', $notification->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('administrator.notification.delete', $notification->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>

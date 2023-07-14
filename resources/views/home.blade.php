@@ -55,12 +55,12 @@
                             <div class="row">
                                 <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                     <div class="stats-icon green mb-2">
-                                        <i class="iconly-boldAdd-User"></i>
+                                        <i class="ph ph-x-square"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Following</h6>
-                                    <h6 class="font-extrabold mb-0">80.000</h6>
+                                    <h6 class="text-muted font-semibold">Http Tidak Aktif</h6>
+                                    <h6 class="font-extrabold mb-0">{{ \App\Models\Domain::where('http_status', "!=", 'aktif')->where('user_id', Auth::user()->id)->count() }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -72,12 +72,16 @@
                             <div class="row">
                                 <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                     <div class="stats-icon red mb-2">
-                                        <i class="iconly-boldBookmark"></i>
+                                        <i class="ph ph-bell-ringing"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Saved Post</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
+                                    <h6 class="text-muted font-semibold">Unread Notifications</h6>
+                                    <h6 class="font-extrabold mb-0">{{ \App\Models\Notification::join('domains', 'notifications.domain_id', '=', 'domains.id')
+    ->where('domains.user_id', Auth::user()->id)
+    ->where('notifications.status', 'unrespond')
+    ->count(); }}
+                                    </h6>
                                 </div>
                             </div>
                         </div>

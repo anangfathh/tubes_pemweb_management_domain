@@ -54,7 +54,11 @@ class ServerController extends Controller
     // Delete a server from the database
     public function destroy(Server $server)
     {
-        $server->delete();
-        return redirect()->route('administrator.server.index')->with('success', 'server deleted successfully');
+        try {
+            $server->delete();
+            return redirect()->route('administrator.server.index')->with('success', 'Server deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('administrator.server.index')->with('error', 'An error occurred: ' . $e->getMessage());
+        }
     }
 }

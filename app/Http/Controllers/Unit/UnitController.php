@@ -53,8 +53,12 @@ class UnitController extends Controller
     // Delete a unit from the database
     public function destroy(Unit $unit)
     {
-        $unit->delete();
-        return redirect()->route('administrator.unit.index')->with('success', 'Unit deleted successfully');
+        try {
+            $unit->delete();
+            return redirect()->route('administrator.unit.index')->with('success', 'Unit deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('administrator.unit.index')->with('error', 'An error occurred: ' . $e->getMessage());
+        }
     }
 
     public function report()
