@@ -69,7 +69,7 @@
                         <label for="jenis" class="form-label">Jenis</label>
                         {{-- <input type="text" name="problem" id="problem" class="form-control"> --}}
                         <div class="form-group">
-                            <select class="choices form-select" name="jenis" id="jenis">
+                            <select class="choices form-select" name="jenis" id="jenis" aria-valuenow="{{ $server->jenis }}">
                                 <option value="fisik">Fisik</option>
                                 <option value="virtual">Virtual</option>
                             </select>

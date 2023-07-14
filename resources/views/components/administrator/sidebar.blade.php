@@ -45,7 +45,7 @@
                 </li>
 
                 <li
-                    class="sidebar-item {{ request()->routeIs('administrator.server.index') ? 'active' : '' }}">
+                    class="sidebar-item {{ request()->routeIs('administrator.server.index', 'administrator.server.create', 'administrator.server.edit') ? 'active' : '' }}">
                     <a href="{{ route('administrator.server.index') }}" class='sidebar-link'>
                     <i class="bi bi-hdd-stack-fill"></i>
                         <span>Server List</span>
@@ -53,7 +53,7 @@
                 </li>
 
                 <li
-                    class="sidebar-item {{ request()->routeIs('administrator.domain.index') ? 'active' : '' }}">
+                    class="sidebar-item {{ request()->routeIs('administrator.domain.index', 'administrator.domain.create', 'administrator.domain.edit', 'administrator.domain.show') ? 'active' : '' }}">
                     <a href="{{ route('administrator.domain.index') }}" class='sidebar-link'>
                     <i class="bi bi-globe2"></i>
                         <span>Domain List</span>
@@ -61,7 +61,7 @@
                 </li>
 
                 <li
-                    class="sidebar-item {{ request()->routeIs('administrator.notification.index') ? 'active' : '' }}">
+                    class="sidebar-item {{ request()->routeIs('administrator.notification.index', 'admin.pantau') ? 'active' : '' }}">
                     <a href="{{ route('administrator.notification.index') }}" class='sidebar-link'>
                     <i class="bi bi-bell-fill"></i>
                         <span>Notifications</span>
@@ -71,7 +71,7 @@
                 <li
                     class="sidebar-item {{ request()->routeIs('report') ? 'active' : '' }}">
                     <a href="{{ route('report') }}" class='sidebar-link'>
-                    <i class="bi bi-bell-fill"></i>
+                    <i class="bi bi-envelope-paper"></i>
                         <span>Report</span>
                     </a>
                 </li>

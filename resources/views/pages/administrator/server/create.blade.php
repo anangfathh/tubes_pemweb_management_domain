@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Create Unit</h1>
+    <h1>Create Server</h1>
     <div class="col-md-12 col-12">
                 <div class="card">
                     <div class="card-content">
@@ -16,42 +16,26 @@
                                                 <label for="name">Name</label>
                                                 <div class="position-relative">
                                                     <input type="text" class="form-control"
-                                                        placeholder="Input with icon left" name="name" id="name">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-person"></i>
-                                                    </div>
+                                                    name="name" id="name">
                                                 </div>
                                                 <label for="name">Ip Address</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Input with icon left" name="ip_address" id="ip_address">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-person"></i>
-                                                    </div>
+                                                    <input type="text" class="form-control" name="ip_address" id="ip_address">
                                                 </div>
                                                 <label for="processor">Processor</label>
                                                 <div class="position-relative">
                                                     <input type="text" class="form-control"
-                                                        placeholder="Input with icon left" name="processor" id="processor">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-person"></i>
-                                                    </div>
+                                                        name="processor" id="processor">
                                                 </div>
                                                 <label for="jumlah_core">Jumlah Core</label>
                                                 <div class="position-relative">
                                                     <input type="text" class="form-control"
-                                                        placeholder="Input with icon left" name="jumlah_core" id="jumlah_core">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-person"></i>
-                                                    </div>
+                                                        name="jumlah_core" id="jumlah_core">
                                                 </div>
                                                 <label for="ram">Ram</label>
                                                 <div class="position-relative">
                                                     <input type="number" class="form-control"
-                                                        placeholder="Input with icon left" name="ram" id="ram">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-person"></i>
-                                                    </div>
+                                                        name="ram" id="ram">
                                                 </div>
                                                 <div>
                                                     <label for="jenis" class="form-label">Jenis</label>

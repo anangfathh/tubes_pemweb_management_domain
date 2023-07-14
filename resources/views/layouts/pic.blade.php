@@ -40,9 +40,9 @@
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+    @yield('script')
     
 <!-- Need: Apexcharts -->
-<script src="{{ asset('extensions/apexcharts/apexcharts.min.js') }}"></script>
 <script src="{{ asset('js/pages/dashboard.js') }}"></script>
 <script src="{{ asset('extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
 <script src="{{ asset('js/pages/simple-datatables.js') }}"></script>

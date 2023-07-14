@@ -6,7 +6,7 @@
 </div>
 <div class="page-content">
     <section class="row">
-        <div class="col-12 col-lg-9">
+        <div class="col-12 col-lg-12">
             <div class="row">
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold">Jumlah HTTP Active</h6>
-                                    <h6 class="font-extrabold mb-0"> 5 </h6>
+                                    <h6 class="font-extrabold mb-0">  {{ \App\Models\Domain::where('http_status', 'aktif')->count() }} </h6>
                                 </div>
                             </div>
                         </div>
@@ -69,8 +69,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Saved Post</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
+                                    <h6 class="text-muted font-semibold">Jumlah HTTP tidak aktif</h6>
+                                    <h6 class="font-extrabold mb-0"> {{ \App\Models\Domain::where('http_status', "!=", 'aktif')->count() }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-3">
+        {{-- <div class="col-12 col-lg-3">
             <div class="card">
                 <div class="card-body py-4 px-4">
                     <div class="d-flex align-items-center">
@@ -95,52 +95,21 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4>Recent Messages</h4>
-                </div>
-                <div class="card-content pb-4">
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="{{ asset('images/faces/1.jpg') }}">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Hank Schrader</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="{{ asset('images/faces/1.jpg') }}">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Dean Winchester</h5>
-                            <h6 class="text-muted mb-0">@imdean</h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="{{ asset('images/faces/1.jpg') }}">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">John Dodol</h5>
-                            <h6 class="text-muted mb-0">@dodoljohn</h6>
-                        </div>
-                    </div>
-                    <div class="px-4">
-                        <button class='btn btn-block btn-xl btn-outline-primary font-bold mt-3'>Start Conversation</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4>Visitors Profile</h4>
-                </div>
-                <div class="card-body">
-                    <div id="chart-visitors-profile"></div>
-                </div>
-            </div>
-        </div>
+        </div> --}}
+        <h3 class="mb-2">Chart Domain Status</h3>
+     <div class="container px-4 mb-5">
+    <div class="p-6 m-20 bg-white rounded shadow">
+        {!! $chart->container() !!}
+    </div>
+
+    </div>   
     </section>
 </div>
+@endsection
+
+@section('script')
+<script src="{{ $chart->cdn() }}"></script>
+
+{{ $chart->script() }}
+
 @endsection

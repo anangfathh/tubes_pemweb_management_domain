@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\ActiveDomainChart;
 use Illuminate\Http\Request;
 use App\Models\Domain;
 use App\Models\User;
@@ -27,9 +28,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(ActiveDomainChart $chart)
     {
         $userId = Auth::user()->id;
+        $chart = $chart->build();
 
         $notifications = Notification::join('domains', 'notifications.domain_id', '=', 'domains.id')
             ->where('domains.user_id', $userId)
@@ -42,12 +44,13 @@ class HomeController extends Controller
         $domainCount = Domain::where('user_id', $userId)->count();
         $httpStatusCount = Domain::where('http_status', 'aktif')->where('user_id', $userId)->count();
 
-        return view('home', compact('notifications', 'domainCount', 'httpStatusCount'));
+        return view('home', compact('notifications', 'domainCount', 'httpStatusCount', 'chart'));
     }
-    public function adminHome()
+    public function adminHome(ActiveDomainChart $chart)
     {
+        $chart = $chart->build();
         $userCount = User::all()->count();
         $unitCount = Unit::all()->count();
-        return view('admin-home', compact('userCount', 'unitCount'));
+        return view('admin-home', compact('userCount', 'unitCount', 'chart'));
     }
 }

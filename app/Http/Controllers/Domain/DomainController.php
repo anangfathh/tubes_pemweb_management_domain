@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Domain;
 
+use App\Charts\ActiveDomainChart;
 use App\Models\User;
 use App\Models\Domain;
 use App\Models\Server;
@@ -90,10 +91,18 @@ class DomainController extends Controller
         $domain = Domain::with('image', 'user', 'server')->where('id', $id)->first();
         $domainImages = DomainImage::where('domain_id', $id)->get();
 
-        return view('pages.administrator.domain.show', [
-            'domain' => $domain,
-            'domainImages' => $domainImages
-        ]);
+
+        if (Auth::user()->is_admin == 0) {
+            return view('pages.pic.domain.show', [
+                'domain' => $domain,
+                'domainImages' => $domainImages
+            ]);
+        } else {
+            return view('pages.administrator.domain.show', [
+                'domain' => $domain,
+                'domainImages' => $domainImages
+            ]);
+        }
     }
 
     /**
@@ -104,12 +113,21 @@ class DomainController extends Controller
         if ($domain->where('unit_id', Auth::user()->unit_id)) {
             $domainImages = DomainImage::where('domain_id', $domain->id)->get();
 
-            return view('pages.administrator.domain.edit', [
-                'servers' => Server::where('unit_id', Auth::user()->unit_id)->get(),
-                'users' => User::where('unit_id', Auth::user()->unit_id)->get(),
-                'domain' => $domain,
-                'domainImages' => $domainImages
-            ]);
+            if (Auth::user()->is_admin == 0) {
+                return view('pages.pic.domain.edit', [
+                    'servers' => Server::where('unit_id', Auth::user()->unit_id)->get(),
+                    'users' => User::where('unit_id', Auth::user()->unit_id)->get(),
+                    'domain' => $domain,
+                    'domainImages' => $domainImages
+                ]);
+            } else {
+                return view('pages.administrator.domain.edit', [
+                    'servers' => Server::where('unit_id', Auth::user()->unit_id)->get(),
+                    'users' => User::where('unit_id', Auth::user()->unit_id)->get(),
+                    'domain' => $domain,
+                    'domainImages' => $domainImages
+                ]);
+            }
         }
 
         return redirect()
@@ -134,6 +152,27 @@ class DomainController extends Controller
 
             return redirect()
                 ->route('administrator.domain.index')
+                ->with('message', 'Produk berhasil diperbarui');
+        }
+
+        return redirect()
+            ->withErrors([
+                'messages' => 'Anda tidak berhak mengubah produk ini'
+            ]);
+    }
+
+    public function updatepic(UpdateRequest $request, Domain $domain)
+    {
+        if ($domain->where('unit_id', Auth::user()->unit_id)) {
+            $images = $request->file('images');
+            $this->storeImage($images, $domain->id);
+
+            $req = $request->all();
+
+            $domain->update($req);
+
+            return redirect()
+                ->route('pic.domains')
                 ->with('message', 'Produk berhasil diperbarui');
         }
 
@@ -238,8 +277,9 @@ class DomainController extends Controller
     public function httpActive()
     {
         $activeHttpCount = Domain::where('http_status', 'aktif')->count();
+        $inactiveHttpCount = Domain::where('http_status', '!=', 'aktif')->count();
 
-        return view('admin-home', compact('activeHttpCount'));
+        return view('admin-home', compact('activeHttpCount, inactiveHttpCount'));
     }
 
     public function domainForPic()
@@ -255,7 +295,7 @@ class DomainController extends Controller
         if (Auth::user()->is_admin === 1) {
             $domains = Domain::with('user', 'server')->get();
         } else {
-            $domains = Domain::where('user_id', Auth::user()->id)->get();
+            $domains = Domain::where('user_id', Auth::user()->id)->with('user', 'server')->get();
         }
 
         $spreadsheet = new Spreadsheet();
@@ -312,4 +352,14 @@ class DomainController extends Controller
 
         $writer->save('php://output');
     }
+
+    // public function chart(ActiveDomainChart $chart)
+    // {
+
+    //     if (Auth::user()->is_admin === 1) {
+    //         return view('admin-home', ['chart' => $chart->build()]);
+    //     } else {
+    //         return view('home', ['chart' => $chart->build()]);
+    //     }
+    // }
 }
