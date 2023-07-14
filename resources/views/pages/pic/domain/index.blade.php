@@ -24,6 +24,18 @@
                 <a href="{{ route('administrator.domain.export') }}" class="btn btn-info mb-3 ms-2"><i class="ph ph-file-xls"></i> Export</a>
             </div>
             <div class="card-body">
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            Domain gagal terhapus, pastikan sudah tidak ada data yang berkaitan dengan Domain ini!!
+                        </div>
+                    @endif
+
+                    @if (session('success'))
+                        <div class="alert alert-light-success color-success alert-dismissible"><i class="bi bi-check-circle"></i>
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>

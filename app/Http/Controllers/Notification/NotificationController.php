@@ -46,10 +46,12 @@ class NotificationController extends Controller
 
     public function delete(Notification $notification)
     {
-
-        $notification->delete();
-
-        return redirect()->route('administrator.notification.index')->with('success', 'Notification delete successfully.');
+        try {
+            $notification->delete();
+            return redirect()->route('administrator.notification.index')->with('success', 'Notification deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('administrator.notification.index')->with('error', 'An error occurred: ' . $e->getMessage());
+        }
     }
 
     public function showNotifications()
