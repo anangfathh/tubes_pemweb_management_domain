@@ -20,7 +20,7 @@
     <section class="section">
         <div class="card">
             <div class="card-header mt-4 ms-2">
-                <a href="{{ route('administrator.domain.create') }}" class="btn btn-success mb-3">Create domain</a>
+                <a href="{{ route('administrator.domain.export') }}" class="btn btn-info mb-3 ms-2">Export</a>
             </div>
             <div class="card-body">
                 <table class="table table-striped" id="table1">

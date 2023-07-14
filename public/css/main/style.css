@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
     background-color: #f7f9fb;
-    transition: opacity 0.75s, visibility 0.75s;
+    transition: opacity 0.5s, visibility 0.5s;
     z-index: 9999;
 }
 
@@ -24,7 +24,7 @@
     border: 15px solid #dddddd;
     border-top-color: #435ebe;
     border-radius: 50%;
-    animation: loading 0.75s ease infinite;
+    animation: loading 0.5s ease infinite;
 }
 
 @keyframes loading {

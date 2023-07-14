@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="{{ asset('extensions/simple-datatables/style.css') }}">
 <link rel="stylesheet" href="{{ asset('css/pages/simple-datatables.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
+{{-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> --}}
 </head>
 
 <body>
@@ -38,16 +38,14 @@
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
-    
+    @yield('script')
 <!-- Need: Apexcharts -->
-<script src="{{ asset('extensions/apexcharts/apexcharts.min.js') }}"></script>
 <script src="{{ asset('js/pages/dashboard.js') }}"></script>
 <script src="{{ asset('extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
 <script src="{{ asset('js/pages/simple-datatables.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.5.0/js/bootstrap.min.js"></script>
-
 
 </body>
 
